@@ -6,7 +6,6 @@ A FastAPI-based face detection and recognition API using InsightFace (ArcFace) f
 - Upload an image and get detected faces with bounding boxes
 - Compare uploaded face against stored embeddings
 - Store user face embeddings in PostgreSQL
-- JWT authentication for secure access
 - Dockerized setup with `docker-compose`
 
 ## Tech Stack
