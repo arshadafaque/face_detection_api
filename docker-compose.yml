@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: face-db
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: face_recognition
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  api:
+    build:
+      context: .          # ← Changed from ./src to . (root directory)
+      dockerfile: dockerfile  # ← Make sure dockerfile is in root, or specify path
+    container_name: face-api
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app            # ← Changed from ./src:/app to .:/app (mount entire project)
+    environment:
+      DATABASE_URL: postgresql+psycopg2://user:root@db:5432/face_recognition
+
+volumes:
+  pgdata:
