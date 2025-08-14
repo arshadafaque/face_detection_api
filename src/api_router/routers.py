@@ -54,7 +54,7 @@ async def match_face(image: UploadFile = File(...),  db: Session = Depends(get_d
 
         results = {
             "Message":"Matched",
-            "Match":[ {"id": r.id, "name": r.name, "distance": float(r.similarity)} for r in rows]
+            "Info":[ {"id": r.id, "name": r.name, "Similarity": float(r.similarity)} for r in rows]
         }
         return results
     else:
