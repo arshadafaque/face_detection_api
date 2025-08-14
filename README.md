@@ -21,5 +21,5 @@ A FastAPI-based face detection and recognition API using InsightFace (ArcFace) f
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone [https://github.com/your-username/face_detection_api.git](https://github.com/arshadafaque/face_detection_api.git)
+git clone https://github.com/your-username/face_detection_api.git
 cd face_detection_api
